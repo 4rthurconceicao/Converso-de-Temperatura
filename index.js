@@ -1,19 +1,22 @@
 
 
- document.addEventListener("keydown", function(evento){
-        if(evento.key === "enter"){
-            convert();
-        }
-    })
+document.addEventListener("keydown", function (evento) {
+    if (evento.keyCode === 13) {
+        convert();
+    }
 
+
+})
 
 function convert() {
+
+    document.getElementById("temp-ratura").focus();
     let temp = document.getElementById('temp-ratura').value;
     let temp2 = document.getElementById('temp').value;
     let temp3 = document.getElementById('tempe2').value
 
 
-   
+
 
 
     if (temp.trim() === "") {
@@ -93,25 +96,25 @@ function convert() {
         document.getElementById('res').value = temp
     }
 
+    let registro = {
+        valor: resultado
+    }
 
 
+    let historico = JSON.parse(localStorage.getItem("historico")) || [];
+
+    historico.push(registro);
+
+    localStorage.setItem("historico", JSON.stringify(historico))
+
+    let historico = JSON.parse(localStorage.getItem("historico")) || [];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    historico.forEach(item => {
+        console.log(`${resultado}`)
+    })
 
 
 
 }
+
