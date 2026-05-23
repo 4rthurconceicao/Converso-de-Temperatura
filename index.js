@@ -11,24 +11,27 @@ document.addEventListener("keydown", function (evento) {
 function convert() {
 
     document.getElementById("temp-ratura").focus();
-    let temp = document.getElementById('temp-ratura').value;
-    let temp2 = document.getElementById('temp').value;
-    let temp3 = document.getElementById('tempe2').value
+    let tempeRatura = document.getElementById('temp-ratura').value;
+    let grau1 = document.getElementById('temp').value;
+    let grau2 = document.getElementById('tempe2').value
 
+    
+    
+ 
 
-
-
-
-    if (temp.trim() === "") {
+    if (tempeRatura.trim() === "") {
+        document.getElementById('res').value = '';
         alert('Valor invalido')
+        return;
     } else {
-        temp = Number(temp)
+        tempeRatura = Number(tempeRatura)
+
     }
 
+    let resultado;
 
-
-    if (temp2 === 'C' && temp3 === 'F') {
-        let resultado = (temp * 9 / 5) + 32
+    if (grau1 === 'C' && grau2 === 'F') {
+         resultado = (tempeRatura * 9 / 5) + 32
 
         if (resultado % 1 === 0) {
             document.getElementById('res').value = resultado;
@@ -36,8 +39,8 @@ function convert() {
             document.getElementById('res').value = resultado.toFixed(1);
         }
 
-    } else if (temp2 === 'C' && temp3 === 'K') {
-        let resultado = temp + 273.15
+    } else if (grau1 === 'C' && grau1 === 'K') {
+         resultado = tempeRatura + 273.15
 
         if (resultado % 1 === 0) {
             document.getElementById('res').value = resultado;
@@ -45,12 +48,12 @@ function convert() {
             document.getElementById('res').value = resultado.toFixed(2);
         }
 
-    } else if (temp2 === 'C' && temp3 === 'C') {
-        document.getElementById('res').value = temp;
+    } else if (grau1 === 'C' && grau1 === 'C') {
+        document.getElementById('res').value = tempeRatura;
     }
 
-    if (temp2 === 'F' && temp3 === 'C') {
-        let resultado = (temp - 32) * 5 / 9
+    if (grau1 === 'F' && grau1 === 'C') {
+        resultado = (tempeRatura - 32) * 5 / 9
 
         if (resultado % 1 === 0) {
             document.getElementById('res').value = resultado;
@@ -60,61 +63,68 @@ function convert() {
 
 
 
-    } else if (temp2 === 'F' && temp3 === 'K') {
+    } else if (grau1 === 'F' && grau2 === 'K') {
 
-        let resultado = (temp - 32) * 5 / 9 + 273.15
-
-        if (resultado % 1 === 0) {
-            document.getElementById('res').value = resultado;
-        } else {
-            document.getElementById('res').value = resultado.toFixed(1);
-        }
-
-    } else if (temp2 === 'F' && temp3 === 'F') {
-        document.getElementById('res').value = temp
-    }
-
-    if (temp2 === 'K' && temp3 === 'C') {
-
-        let resultado = temp - 273.15
+         resultado = (tempeRatura - 32) * 5 / 9 + 273.15
 
         if (resultado % 1 === 0) {
             document.getElementById('res').value = resultado;
         } else {
             document.getElementById('res').value = resultado.toFixed(1);
         }
-    } else if (temp2 === 'K' && temp3 === 'F') {
 
-        let resultado = (temp - 273.15) * 9 / 5 + 32
+    } else if (grau1 === 'F' && grau2 === 'F') {
+        document.getElementById('res').value = tempeRatura
+    }
+
+    if (grau1 === 'K' && grau2 === 'C') {
+
+         resultado = tempeRatura - 273.15
 
         if (resultado % 1 === 0) {
             document.getElementById('res').value = resultado;
         } else {
             document.getElementById('res').value = resultado.toFixed(1);
         }
-    } else if (temp2 === 'K' && temp3 === 'K') {
-        document.getElementById('res').value = temp
+    } else if (grau1 === 'K' && grau2 === 'F') {
+
+         resultado = (tempeRatura - 273.15) * 9 / 5 + 32
+
+        if (resultado % 1 === 0) {
+            document.getElementById('res').value = resultado;
+        } else {
+            document.getElementById('res').value = resultado.toFixed(1);
+        }
+    } else if (grau1 === 'K' && grau2 === 'K') {
+        document.getElementById('res').value = tempeRatura
     }
+    
 
-    let registro = {
-        valor: resultado
-    }
+        let registro = {
+             resultado:resultado
+        }
 
+        let historico = JSON.parse(localStorage.getItem("historico")) || [];
 
-    let historico = JSON.parse(localStorage.getItem("historico")) || [];
+        historico.push(registro);
 
-    historico.push(registro);
-
-    localStorage.setItem("historico", JSON.stringify(historico))
-
-    let historico = JSON.parse(localStorage.getItem("historico")) || [];
+        localStorage.setItem("historico", JSON.stringify(historico));
 
 
-    historico.forEach(item => {
-        console.log(`${resultado}`)
-    })
+        console.log(historico);
 
 
+        function clear(){
+            localStorage.removeItem("historico");
+
+            document.getElementById('res').value = "";
+
+            console.log("historico limpo")
+        }
 
 }
+
+
+
+
 
