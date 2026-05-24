@@ -26,7 +26,7 @@ function mostraHistorico() {
 
     historico.forEach(item => {
         histoRico.innerHTML += `
-            ${item.resultado} <br>`
+          ${item.temp} °${item.de}  --> ${item.resultado}°  ${item.para}<br>`
     });
 }
 
@@ -132,6 +132,9 @@ function convert() {
      resultado = Number(resultado.toFixed(1));
 
     let registro = {
+        temp: tempeRatura,
+        de: grau1,
+        para:grau2,
         resultado: resultado
     }
 
