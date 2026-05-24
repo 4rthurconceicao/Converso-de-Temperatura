@@ -1,35 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styler.css">
     <title>Converso de Temperatura</title>
-    
+
 </head>
+
 <body>
-    <h1>Converso de temperatura</h1>
 
-     <select name="" id="temp">
-        <option value="C">Celsius (°C)</option>
-        <option value="F"> Fahrenheit (°F)</option>
-        <option value="K">Kelvin (K)</option>
-     </select>
-
-     <input type="number" id="temp-ratura">
-
-     <select name="" id="tempe2">
-         <option value="F"> Fahrenheit (°F)</option>
-         <option value="K">Kelvin (K)</option>
-        <option value="C">Celsius (°C)</option>
-     </select>
-     
-
-     <input type="number" id="res" readonly>
+    <div class="app">
+        <div class="card">
 
 
-   <br><br>  <button onclick="convert()">Converte</button> <br>
+            <h1>Converso de temperatura</h1>
+            <div class="converter">
+                <select name="" id="temp">
+                    <option value="C">Celsius (°C)</option>
+                    <option value="F"> Fahrenheit (°F)</option>
+                    <option value="K">Kelvin (K)</option>
+                </select>
 
-   <br> <button onclick="clear()">Limpa Historico</button>
+                <input type="number" id="temp-ratura">
+
+                <select name="" id="tempe2">
+                    <option value="F"> Fahrenheit (°F)</option>
+                    <option value="K">Kelvin (K)</option>
+                    <option value="C">Celsius (°C)</option>
+                </select>
+
+
+                <input type="number" id="res" readonly>
+
+
+
+            </div>
+
+            <div class="buttons">
+
+                <br><br> <button onclick="convert()">Converte</button> <br>
+
+                <br> <button onclick="limparHistorico()">Limpa Historico</button>
+
+            </div>
+
+            <div class="history-box">
+                <h2>Historico:</h2>
+                <p id="histo"></p>
+
+            </div>
+
+
+        </div>
+    </div>
 </body>
 <script src="index.js"></script>
+
 </html>
